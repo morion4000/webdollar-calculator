@@ -11,7 +11,7 @@ docker:
         password: $DOCKER_PASSWORD
         tag: $WERCKER_GIT_COMMIT
         repository: morion4000/webdollar-calculator
-        cmd: static-server
+        cmd: node_modules/static-server/bin/static-server.js
         ports: "80"
         working-dir: /pipeline/source
 
