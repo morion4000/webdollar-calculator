@@ -3,6 +3,7 @@ box: node
 build:
   steps:
     - npm-install
+    - olger/yeoman-bower-install
 
 docker:
   steps:
