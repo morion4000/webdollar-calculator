@@ -1,0 +1,9 @@
+{
+  "name": "webdollar-calculator",
+  "version": "0.0.1",
+  "description": "",
+  "author": "morion4000",
+  "dependencies": {
+    "static-server": "^2.2.1"
+  }
+}

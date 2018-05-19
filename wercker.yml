@@ -1,0 +1,35 @@
+box: node
+
+build:
+  steps:
+    - npm-install
+
+docker:
+  steps:
+    - internal/docker-push:
+        username: $DOCKER_USER
+        password: $DOCKER_PASSWORD
+        tag: $WERCKER_GIT_COMMIT
+        repository: morion4000/webdollar-calculator
+        registry: https://registry.hub.docker.com
+        cmd: static-server
+        ports: "80"
+        working-dir: /pipeline/source
+
+rancher:
+  steps:
+    - install-packages:
+        packages: unzip
+
+    - nhumrich/deploy-to-rancher:
+        access_key: $RANCHER_ACCESS_KEY
+        secret_key: $RANCHER_SECRET_KEY
+        rancher_url: $RANCHER_URL
+        https: false
+        tag: $WERCKER_GIT_COMMIT
+        stack_name: services
+        service_name: api
+        docker_org: morion4000
+        docker_image: medusa
+        use_tag: true
+        inplace: true
