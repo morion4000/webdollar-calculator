@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #1B1B1B !important; 
+            background-color: #1B1B1B !important;
             color: rgb(239, 224, 190);
        }
         .jumbotron {
@@ -180,7 +180,7 @@
       $('[data-toggle="tooltip"]').tooltip();
       compute();
 
-      $.getJSON('http://1h3.nodes.webd.hoste.ro:57284/power', function(data) {
+      $.getJSON('https://wd2.hoste.ro:65279/power', function(data) {
         $('#global_power_input').val(parseInt(data.global / 1000));
         compute();
       });
