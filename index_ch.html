@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>WebDollar Mining Reward Calculator</title>
+  <title>WebDollar 挖矿收益计算器</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -62,16 +62,16 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">
-        WebDollar Mining Reward Calculator
+        WebDollar挖矿收益计算器
       </h1>
-      <p class="lead">Find out how many blocks per day you can mine on the WebDollar network.</p>
+      <p class="lead">查询每日在WebDallar网络您可挖的区块数量</p>
       <hr class="my-4">
 
-      <center><a href="https://webdollarminingpool.com/" target="_blank">WebDollar Mining Pool</a> | <a href="http://nodes.wd.hostero.eu/" target="_blank">Fallback Nodes</a> | <a href="http://hash.wd.hostero.eu/dashboard/db/webdollar-global-hashing-power" target="_blank">Global Hashing Power Chart</a></center>
+      <center><a href="https://webdollarminingpool.com/" target="_blank">WebDollar 矿池</a> | <a href="http://nodes.wd.hostero.eu/" target="_blank">可靠节点</a> | <a href="http://hash.wd.hostero.eu/dashboard/db/webdollar-global-hashing-power" target="_blank">全球哈希率图表</a></center>
       <hr class="my-4">
 
       <strong>
-        <label for="power_input">Your Hash rate</label>
+        <label for="power_input">您的哈希率</label>
       </strong>
       <div class="input-group">
         <input type="text" class="form-control" value="600" placeholder="0" id="power_input" />
@@ -82,7 +82,7 @@
 
       <br />
       <strong>
-        <label for="global_power_input">Global Hash rate</label>
+        <label for="global_power_input">全球哈希率</label>
       </strong>
       <div class="input-group">
         <input type="text" class="form-control" value="1300" placeholder="0" id="global_power_input" />
@@ -93,19 +93,19 @@
 
       <p>
         <small class="form-text text-muted">
-          <i>You can manually update the <strong>Global Hash rate</strong> <span class="badge badge-info" data-toggle="tooltip" data-html="true" title="<img src='webdollar-global-hash.png' width='400' />">i</span> displayed on <a href="https://webdollar.io" target="_blank">webdollar.io</a></i>.
+          <i>您可以通过查询 <a href="https://webdollar.io" target="_blank">webdollar.io</a> 网站，手动设置全球哈希率.
         </small>
       </p>
 
       <div class="alert alert-secondary" role="alert">
         <center>
-          1 Block Mined Every: <strong><span class="block_time">0</span> seconds</strong>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Block Reward: <strong><span id="block_reward">0</span> WEBD</strong>
+          每个区块挖矿时间: <strong><span class="block_time">0</span> 秒</strong>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;区块奖励: <strong><span id="block_reward">0</span> WEBD</strong>
         </center>
       </div>
 
       <p class="lead">
         <center>
-          <a class="btn btn-primary btn-lg" href="javascript:;" role="button" onclick="compute()">Compute</a>
+          <a class="btn btn-primary btn-lg" href="javascript:;" role="button" onclick="compute()">计算</a>
         </center>
       </p>
 
@@ -113,15 +113,15 @@
 
       <div class="card">
         <div class="card-body">
-          <p class="lead">Results:</p>
+          <p class="lead">结果:</p>
           <ul>
-            <li>You can mine a block every
-              <strong><span id="block_mining_time_minutes">0</span> minutes</strong> or
-              <strong><span id="block_mining_time_hours">0</span> hours</strong>
+            <li>您可以每
+              <strong><span id="block_mining_time_minutes">0</span> 分钟或者</strong>,
+              <strong><span id="block_mining_time_hours">0</span> 小时挖到一个区块。</strong>
             </li>
-            <li>You can mine <strong><span id="reward_24">0</span> WEBD</strong>
-              <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="You need to round up to the nearest multiple of 6000. You can only mine in chunks of 6000 WEBD.">i</span> or <strong><span id="reward_24_blocks">0</span> block(s)</strong>              every day</li>
-            <li>You have a <strong><span id="dominance">0</span>%</strong> chance to mine a block every <strong><span class="block_time">0</span> seconds</strong></li>
+            <li>您可以每天挖到 <strong><span id="reward_24">0</span> WEBD</strong>
+              <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="You need to round up to the nearest multiple of 6000. You can only mine in chunks of 6000 WEBD.">i</span> or <strong><span id="reward_24_blocks">0</span></strong> 或者xxx个区块。</li>
+            <li>您每 <strong><span class="block_time">0</span></strong> 秒钟挖到一个区块的概率为 <strong><span id="dominance">0</span>%</strong></li>
           </ul>
         </div>
       </div>
@@ -130,17 +130,17 @@
 
       <p>
         <a class="btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Show me the math
+            展示计算过程
         </a>
       </p>
       <div class="collapse" id="collapseExample">
         <div class="card card-body">
-          Formulae:
+          公式:
           <ul>
-            <li><code><strong>BLOCK_REWARD</strong> = 6000</code></li>
-            <li><code><strong>BLOCK_TIME</strong> = 40</code></li>
-            <li><code><strong>DOMINANCE</strong> = <strong>USER_HASHES</strong> / <strong>GLOBAL_HASHES</strong> / 1000 * 100</code></li>
-            <li><code><strong>REWARD_PER_DAY</strong> = <strong>BLOCK_REWARD</strong> * 3600 * 24 / <strong>BLOCK_TIME</strong> * <strong>DOMINANCE</strong> / 100</code></li>
+            <li><code><strong>区块奖励</strong> = 6000(个)</code></li>
+            <li><code><strong>区块时间</strong> = 40 （秒）</code></li>
+            <li><code><strong>支配比例</strong> = 用户哈希率/全球哈希率/1000 * 100（%）</li>
+            <li><code><strong>每日奖励</strong> = 区块奖励*3600*24/区块时间*支配比例/100（个）</li>
           </ul>
         </div>
       </div>
@@ -148,7 +148,7 @@
   </div>
 
   <p>
-    <center><small class="form-text text-muted">&copy;2018 <a href="http://hostero.eu">Hostero.eu</a> | Donate: WEBD$gCpn9xPgcSkBNuUAwV7oENGStzhAdc1fRz$ | <a href="index_ch.html">Switch to Chinese</a></small></center>
+    <center><small class="form-text text-muted">&copy;2018 <a href="http://hostero.eu">Hostero.eu</a> | Donate: WEBD$gCpn9xPgcSkBNuUAwV7oENGStzhAdc1fRz$ | <a href="index.html">Switch to English</a></small></small></center>
   </p>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
