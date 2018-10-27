@@ -4,58 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>WebDollar 挖矿收益计算器</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #1B1B1B !important;
-            color: rgb(239, 224, 190);
-       }
-        .jumbotron {
-            background-color: transparent !important;
-        }
-        a {
-    color: rgb(255, 193, 44) !important
-        }
-        .form-control {
-    color: rgb(239, 224, 190) !important;
-    background-color: transparent !important;
-    border: 1px solid rgb(239, 224, 190) !important;
-}
-
-        .form-control:focus {
-    color: #fff !important;
-    background-color: gray !important;
-    border-color: rgb(255, 193, 44)!important;
-    box-shadow: 0px 0px 0px 0.2rem grey !important;
-}
-        .input-group-text {
-            background-color: rgb(239, 224, 190) !important;
-        }
-        .badge-info {
-            background-color: rgb(255, 193, 44) !important;
-        }
-        .text-muted {
-            color: gray !important;
-        }
-        .alert-secondary {
-            color: rgb(255, 193, 44) !important;
-            background-color: transparent !important;
-            border-color: rgb(239, 224, 190) !important;
-}
-        .btn-primary, .btn-light, .btn-light:hover .btn-primary:hover {
-        color: #000 !important;
-        background-color: rgb(255, 193, 44) !important;
-        border-color: #d39e00 !important;
-}
-        .btn-primary:hover, .btn-light:hover {
-            box-shadow: 0px 0px 0px 0.2rem rgba(255, 193, 44, 0.5) !important;
-        }
-        .card {
-            background-color: transparent !important;
-            border: 1px solid rgb(239, 224, 190) !important;
-}
-
-    </style>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
@@ -74,9 +24,9 @@
         <label for="power_input">您的哈希率</label>
       </strong>
       <div class="input-group">
-        <input type="text" class="form-control" value="600" placeholder="0" id="power_input" />
+        <input type="text" class="form-control" value="10" placeholder="0" id="power_input" />
         <div class="input-group-append">
-          <span class="input-group-text">hashes/s&nbsp;<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="1000 hashes/s = 1 kH/s">i</span></span>
+          <span class="input-group-text">kH/s&nbsp;<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="1000 kH/s = 1 MH/s">i</span></span>
         </div>
       </div>
 
@@ -85,9 +35,9 @@
         <label for="global_power_input">全球哈希率</label>
       </strong>
       <div class="input-group">
-        <input type="text" class="form-control" value="1300" placeholder="0" id="global_power_input" />
+        <input type="text" class="form-control" value="100" placeholder="0" id="global_power_input" />
         <div class="input-group-append">
-          <span class="input-group-text">kH/s&nbsp;<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="1000 kH/s = 1 MH/s">i</span></span>
+          <span class="input-group-text">MH/s&nbsp;<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="1000 kH/s = 1 MH/s">i</span></span>
         </div>
       </div>
 
@@ -120,7 +70,7 @@
               <strong><span id="block_mining_time_hours">0</span> 小时挖到一个区块。</strong>
             </li>
             <li>您可以每天挖到 <strong><span id="reward_24">0</span> WEBD</strong>
-              <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="You need to round up to the nearest multiple of 6000. You can only mine in chunks of 6000 WEBD.">i</span> 或者 <strong><span id="reward_24_blocks">0</span></strong> 个区块。</li>
+              <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="You need to round up to the nearest multiple of 6000. You can only mine in chunks of 6000 WEBD.">i</span> 或者 <strong><span id="reward_24_blocks">0</span></strong>              个区块。</li>
             <li>您每 <strong><span class="block_time">0</span></strong> 秒钟挖到一个区块的概率为 <strong><span id="dominance">0</span>%</strong></li>
           </ul>
         </div>
@@ -155,38 +105,7 @@
   <script src="bower_components/numeral/numeral.js"></script>
   <script src="bower_components/simple-statistics/index.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript">
-    function compute() {
-      var global_power = parseInt($('#global_power_input').val());
-      var power = parseInt($('#power_input').val());
-      var block_time = 40;
-      var block_reward = 6000;
-      var dominance = power / global_power / 1000 * 100;
-      var reward_24 = block_reward * 60 * 60 * 24 / block_time * dominance / 100;
-      var block_mining_time = 100 / dominance * block_time;
-
-      $('#power').html(numeral(power).format('0,0'));
-      $('#global_power').html(numeral(global_power).format('0,0'));
-      $('#dominance').html(numeral(dominance).format('0.00000'));
-      $('.block_time').html(block_time);
-      $('#reward_24').html(numeral(reward_24).format('0,0'));
-      $('#reward_24_blocks').html(numeral(Math.floor(reward_24 / 6000)).format('0,0'));
-      $('#block_mining_time_seconds').html(numeral(block_mining_time).format('0,0'));
-      $('#block_mining_time_minutes').html(numeral(block_mining_time / 60).format('0,0'));
-      $('#block_mining_time_hours').html(numeral(block_mining_time / 60 / 60).format('0,0'));
-      $('#block_reward').html(block_reward);
-    }
-
-    $(function() {
-      $('[data-toggle="tooltip"]').tooltip();
-      compute();
-
-      $.getJSON('https://wd2.hoste.ro:65279/power', function(data) {
-        $('#global_power_input').val(parseInt(data.global / 1000));
-        compute();
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
