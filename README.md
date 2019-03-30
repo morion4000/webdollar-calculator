@@ -1,2 +1,2 @@
-# calculator
+# WebDollar POW Calculator
 
