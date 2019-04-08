@@ -15,9 +15,10 @@
         WebDollar POW Reward Calculator
       </h1>
       <p class="lead">Find out how many blocks per day you can mine on the WebDollar network.</p>
+      <p>With the introduction of the hybrid system, only 33% of the blocks are mined with Proof Of Work.</p>
       <hr class="my-4">
 
-      <center><a href="https://webdollarminingpool.com/" target="_blank">WebDollar Mining Pool</a> | <a href="http://nodes.wd.hostero.eu/" target="_blank">Fallback Nodes</a> | <a href="http://hash.wd.hostero.eu/dashboard/db/webdollar-global-hashing-power" target="_blank">Global Hashing Chart</a>        | <a href="https://www.webdscan.io/" target="_blank">WebdScan.io</a></center>
+      <center><a href="https://www.hostero.eu" target="_blank">Hostero Universal Miner</a> | <a href="https://webdollarminingpool.com/" target="_blank">WebDollar Mining Pool</a> | <a href="http://nodes.wd.hostero.eu/" target="_blank">Fallback Nodes</a> | <a href="http://hash.wd.hostero.eu/dashboard/db/webdollar-global-hashing-power" target="_blank">Global Hashing Chart</a>        | <a href="https://www.webdscan.io/" target="_blank">WebdScan.io</a></center>
       <hr class="my-4">
 
       <strong>
@@ -35,7 +36,7 @@
         <label for="global_power_input">Global Hash rate</label>
       </strong>
       <div class="input-group">
-        <input type="text" class="form-control" value="100" placeholder="0" id="global_power_input" />
+        <input type="text" class="form-control" value="50" placeholder="0" id="global_power_input" />
         <div class="input-group-append">
           <span class="input-group-text">MH/s&nbsp;<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="1000 kH/s = 1 MH/s">i</span></span>
         </div>
@@ -89,7 +90,7 @@
           <ul>
             <li><code><strong>BLOCK_REWARD</strong> = 6000</code></li>
             <li><code><strong>BLOCK_TIME</strong> = 40</code></li>
-            <li><code><strong>DOMINANCE</strong> = <strong>USER_HASHES</strong> / <strong>GLOBAL_HASHES</strong> / 1000 * 100</code></li>
+            <li><code><strong>DOMINANCE</strong> = <strong>USER_HASHES</strong> / <strong>GLOBAL_HASHES</strong> / 1000 * 100 / 3</code></li>
             <li><code><strong>REWARD_PER_DAY</strong> = <strong>BLOCK_REWARD</strong> * 3600 * 24 / <strong>BLOCK_TIME</strong> * <strong>DOMINANCE</strong> / 100</code></li>
           </ul>
         </div>
